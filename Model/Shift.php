@@ -14,8 +14,17 @@ class Shift
     private DateTime $startDate;
     private DateTime $endDate;
     private float $difficultyIndex;
+    private Employee $employee;
 
-    public function __construct(string $id, string $name, array $abilities, DateTime $startDate, DateTime $endDate, float $difficultyIndex)
+    public function __construct(
+        string $id,
+        string $name,
+        array $abilities,
+        DateTime $startDate,
+        DateTime $endDate,
+        float $difficultyIndex,
+        Employee $employee
+    )
     {
         $this->id = $id;
         $this->name = $name;
@@ -23,6 +32,7 @@ class Shift
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->difficultyIndex = $difficultyIndex;
+        $this->employee = $employee;
     }
 
     public function id(): string
@@ -53,6 +63,11 @@ class Shift
     public function difficultyIndex(): float
     {
         return $this->difficultyIndex;
+    }
+
+    public function employee(): Employee
+    {
+        return $this->employee;
     }
 
     public function setDifficultyIndex(float $difficultyIndex): void
