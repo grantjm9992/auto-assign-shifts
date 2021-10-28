@@ -1,0 +1,26 @@
+version: "3.1"
+services:
+    mariadb:
+        image: docker.io/bitnami/mariadb:10.2
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+            - MARIADB_USER=my_user
+            - MARIADB_DATABASE=my_database
+            - MARIADB_PASSWORD=my_password
+    www:
+        build: .
+        ports: 
+            - "8001:80"
+        volumes:
+            - ./www:/var/www/html/
+        networks:
+            - default
+        environment:
+            - DB_HOST=mariadb
+            - DB_USERNAME=my_user
+            - DB_DATABASE=my_database
+            - DB_PASSWORD=my_password
+        depends_on:
+            - mariadb
+volumes:
+    persistent:
